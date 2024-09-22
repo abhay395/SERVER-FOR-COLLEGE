@@ -33,7 +33,7 @@ const { cookieExtractor, isAuth } = require("./service/com");
 const cookieParser = require("cookie-parser");
 
 // TODO: cors setup
-app.use(express.static(path.join(__dirname, 'public')))
+app.use(express.static('public'))
 app.use(
   cors()
 );
