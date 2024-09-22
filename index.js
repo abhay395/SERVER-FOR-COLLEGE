@@ -33,12 +33,9 @@ const { cookieExtractor, isAuth } = require("./service/com");
 const cookieParser = require("cookie-parser");
 
 // TODO: cors setup
+app.use(express.static(path.join(__dirname, 'public')))
 app.use(
-  cors({
-    origin: "http://localhost:5173",
-    methods: "GET,POST,PUT,DELETE",
-    credentials: true,
-  })
+  cors()
 );
 
 // Cloudinary setUp
@@ -159,7 +156,7 @@ passport.deserializeUser(function (user, done) {
   done(null, user);
 });
 
-app.use(express.static(path.join(__dirname, 'public')));
+
 app.use("/auth", authRouter.router);
 app.use("/user", isAuth(), userRouter.router);
 app.use("/department-head", departmentHeadRouter.router);
