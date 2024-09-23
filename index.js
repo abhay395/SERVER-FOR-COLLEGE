@@ -156,7 +156,7 @@ passport.deserializeUser(function (user, done) {
   done(null, user);
 });
 
-server.get('*',(req,res)=>res.sendFile(path.resolve('build','index.html')))
+app.get('*',(req,res)=>res.sendFile(path.resolve('build','index.html')))
 app.use("/auth", authRouter.router);
 app.use("/user", isAuth(), userRouter.router);
 app.use("/department-head", departmentHeadRouter.router);
