@@ -9,7 +9,6 @@ const userSchema = new mongoose.Schema({
   image:{type:String,required:false,default:null},
   password:{type:Buffer,required:false},
   salt:{type:Buffer,required:false},
-
 });
 
 const User = mongoose.model('User', userSchema);

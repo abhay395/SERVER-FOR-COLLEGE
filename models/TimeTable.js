@@ -2,6 +2,10 @@ const mongoose = require('mongoose');
 
 // Time Table Schema
 const timeTableSchema = new mongoose.Schema({
+  courseSession: {
+    type: String,
+    required: true,
+  },
   courseName: {
     type: String,
     required: true,

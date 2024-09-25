@@ -42,7 +42,7 @@ exports.createUser = async (req, res) => {
                 httpOnly: true,
               })
               .status(201)
-              .json({ _id: 'zz' });
+              .json({ _id: user._id });
           }
         });
       }
@@ -71,7 +71,8 @@ exports.logout = (req, res) => {
 
 exports.checkAuth = async (req, res) => {
   if(req.user){
-    res.json(req.user);
+    console.log(req.user);
+    res.json({message:"auth"}).status(200);
   }else{
     res.sendStatus(401).json({message:"unauth"})
   }
