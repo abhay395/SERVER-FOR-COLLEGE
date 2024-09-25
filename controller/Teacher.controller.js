@@ -1,5 +1,6 @@
 const Teacher = require("../models/Teacher"); // Mongoose model
 const { uploadOncloudinary } = require("../utils/cloudinary");
+const fs = require("fs");
 // GET: Fetch all teachers
 exports.getTeachers = async (req, res) => {
   try {
@@ -10,7 +11,6 @@ exports.getTeachers = async (req, res) => {
   }
 };
 
-const fs = require("fs");
 // const cloudinary = require("../config/cloudinaryConfig");
 // POST: Add new teacher
 exports.addTeacher = async (req, res) => {

@@ -1,23 +1,32 @@
 const Student = require("../models/Student");
-
+const { uploadOncloudinary } = require("../utils/cloudinary");
+const fs = require("fs");
 // Create and save a new student
 exports.create = async (req, res) => {
-  const { name, image, cgpa, course, year, rank, examYear } = req.body;
-
+  
   try {
+    const { name, cgpa, course, year, rank, examYear } = req.body;
+    if (!req.file || !req.file.path) {
+      return res.status(400).json({ error: "No file uploaded" });
+    }
+    const result = await uploadOncloudinary(req.file.path, "image");
+    if (!result || !result.secure_url) {
+      console.log(imagePath);
+      return res.status(500).json({ error: "Error uploading image" });
+    }
     const newStudent = new Student({
       name,
-      image,
       cgpa,
       course,
       year,
+      image: result.secure_url,
       rank,
       examYear,
     });
     await newStudent.save();
     res
       .status(201)
-      .json({ message: "Student created successfully", newStudent });
+      .json({ message: "Student created successfully"});
   } catch (error) {
     res.status(500).json({ message: "Error creating student", error });
   }

@@ -1,6 +1,5 @@
 const express = require("express");
 const router = express.Router();
-const multer = require("multer");
 const {upload} = require('../middlewares/multer.middlewares')
 const teacherController = require("../controller/Teacher.controller");
 const { fileSizeError } = require("../middlewares/fileSizeError");
