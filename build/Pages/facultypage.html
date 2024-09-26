@@ -31,6 +31,7 @@
       crossorigin="anonymous"
     />
     <link rel="stylesheet" href="/indexStyle.css" />
+    <link rel="stylesheet" href="StudentNewCard.css"/> 
   </head>
   <body>
     <!-- navbar -->
@@ -41,8 +42,8 @@
       <button
         class="navbar-toggler"
         type="button"
-        data-toggle="collapse"
-        data-target="#navbarNav"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarNav"
         aria-controls="navbarNav"
         aria-expanded="false"
         aria-label="Toggle navigation"
@@ -54,32 +55,88 @@
           <li class="nav-item active">
             <a class="nav-link text" href="/index.html">Home</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/Pages/AboutPage.html">About Us</a>
+          <li class="nav-item dropdown">
+            <a
+              class="nav-link dropdown-toggle"
+              href="#"
+              role="button"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >
+              About
+            </a>
+            <ul class="dropdown-menu">
+              <li>
+                <a class="dropdown-item" href="/Pages/AboutPage.html"
+                  >About Us</a
+                >
+              </li>
+              <li>
+                <a class="dropdown-item" href="/Pages/HeadOfDepartment.html"
+                  >Head Of Department</a
+                >
+              </li>
+            </ul>
           </li>
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <a
+              class="nav-link dropdown-toggle"
+              href="#"
+              role="button"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >
               People
             </a>
             <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="../Pages/facultypage.html">Faculty</a></li>
-              <li><a class="dropdown-item" href="../Pages/StaffPage.html">Staff</a></li>
-        
+              <li>
+                <a class="dropdown-item" href="../Pages/facultypage.html"
+                  >Faculty</a
+                >
+              </li>
+              <li>
+                <a class="dropdown-item" href="../Pages/StaffPage.html"
+                  >Staff</a
+                >
+              </li>
             </ul>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="/Pages/ReserchPage.html">Research</a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/Pages/webinar-seminar.html">Webinar & Seminar</a>
+          </li>
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <a
+              class="nav-link dropdown-toggle"
+              href="#"
+              role="button"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >
               Students
             </a>
             <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="../Pages/BscStudentpage.html">BSc</a></li>
-              <li><a class="dropdown-item" href="../Pages/BCAStudentpage.html">BCA</a></li>
-              <li><a class="dropdown-item" href="../Pages/MscStudentpage.html">Msc</a></li>
-        
+              <li>
+                <a class="dropdown-item" href="../Pages/BscStudentpage.html"
+                  >BSc</a
+                >
+              </li>
+              <li>
+                <a class="dropdown-item" href="../Pages/BCAStudentpage.html"
+                  >BCA</a
+                >
+              </li>
+              <li>
+                <a class="dropdown-item" href="../Pages/MscStudentpage.html"
+                  >Msc</a
+                >
+              </li>
             </ul>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/Pages/PlacementStudentPage.html">Placements</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="/Pages/Time_TablePage.html">Time Table</a>
@@ -87,10 +144,19 @@
         </ul>
       </div>
     </nav>
+
     <!-- faculty data -->
     <div class="container my-4">
       <h1 class="text-center mb-4 audio-font">Faculty</h1>
-      <div id="facultydata" class="row  mt-1"></div>
+      <!-- loader -->
+      <div id="loader" class="d-flex justify-content-center align-items-center" style="height: 50vh;">
+        <div class="spinner-border text-primary" role="status">
+          <span class="visually-hidden">Loading...</span>
+        </div>
+      </div>
+      <!-- add data -->
+      <div id="facultydata" class="row  mt-1">
+      </div>
     </div>
 
     <!-- footer -->
@@ -101,19 +167,26 @@
             <h5>Contact Us</h5>
             <ul class="list-unstyled">
               <li>
-                <i class="fas fa-map-marker-alt"></i> 123, College Address, City
+                <i class="fas fa-map-marker-alt"></i>&nbsp; A. B. Road
+                Bhawarkuwan Indore, MP, India
               </li>
-              <li><i class="fas fa-phone"></i> +91 98765 43210</li>
-              <li><i class="fas fa-envelope"></i> email@college.edu</li>
+              <li><i class="fas fa-phone"></i> &nbsp;+91-731-2970017</li>
+              <li><i class="fas fa-envelope"></i>&nbsp; gnspsc@gmail.com</li>
             </ul>
           </div>
           <div class="col-md-4">
             <h5>Quick Links</h5>
             <ul class="list-unstyled">
-              <li><a href="#" class="nav-link">Admissions</a></li>
-              <li><a href="#" class="nav-link">Research</a></li>
-              <li><a href="#" class="nav-link">Faculty</a></li>
-              <li><a href="#" class="nav-link">Contact</a></li>
+              <li>
+                <a href="/Pages/AboutPage.html" class="nav-link">About</a>
+              </li>
+              <li>
+                <a href="/Pages/ReserchPage.html" class="nav-link">Research</a>
+              </li>
+              <li>
+                <a href="/Pages/facultypage.html" class="nav-link">Faculty</a>
+              </li>
+              <li><a href="/index.html" class="nav-link">Home</a></li>
             </ul>
           </div>
           <div class="col-md-4 text-center social-boxes">
@@ -125,12 +198,12 @@
           </div>
         </div>
       </div>
+    </footer>
       <script src="../JavascriptAll/faculty.js"></script>
       <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
       crossorigin="anonymous"
     ></script>
-    </footer>
   </body>
   </html>

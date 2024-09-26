@@ -3,14 +3,12 @@ const container = document.getElementById("ak");
 const loader = document.createElement("div");
 loader.className = "loader"; // Assuming you have some CSS for this loader
 loader.innerHTML = `<!-- Skeleton Loader for Student Sections -->
-<div class="skeleton-student-section">
-  <div class="skeleton-title"></div>
-  <div class="skeleton-student-list">
-    <div class="skeleton-student-card"></div>
-    <div class="skeleton-student-card"></div>
-    <div class="skeleton-student-card"></div>
-  </div>
-</div>
+ <div id="loader" class="d-flex justify-content-center align-items-center" style="height: 50vh;">
+        <div class="spinner-border text-primary" role="status">
+          <span class="visually-hidden">Loading...</span>
+        </div>
+      </div>
+
 `;
 
 // Show loader
@@ -104,3 +102,35 @@ const populateStudents = (students, section) => {
 
 // Initialize the UI
 setStudentUI();
+
+document.addEventListener("DOMContentLoaded", async () => {
+  const navbarUl = document.querySelector("#navbarNav ul");
+  const login = document.querySelector("#login");
+  const adminPanelItem = createNavItem("Admin Panel", "/Pages/AdminPanel.html");
+  const loginItem = createNavItem("Login", "/Pages/Login.html");
+
+  try {
+    const response = await fetch("/check/myUser");
+    const data = await response.json();
+    navbarUl.appendChild(adminPanelItem);
+
+    console.log(data);
+  } catch (error) {
+    navbarUl.appendChild(loginItem);
+    console.error("Authentication check failed:", error);
+  }
+});
+
+// Helper function to create nav item
+function createNavItem(text, href) {
+  const li = document.createElement("li");
+  li.className = "nav-item";
+
+  const a = document.createElement("a");
+  a.className = "nav-link";
+  a.href = href;
+  a.textContent = text;
+
+  li.appendChild(a);
+  return li;
+}

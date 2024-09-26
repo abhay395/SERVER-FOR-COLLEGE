@@ -42,8 +42,8 @@
       <button
         class="navbar-toggler"
         type="button"
-        data-toggle="collapse"
-        data-target="#navbarNav"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarNav"
         aria-controls="navbarNav"
         aria-expanded="false"
         aria-label="Toggle navigation"
@@ -55,32 +55,88 @@
           <li class="nav-item active">
             <a class="nav-link text" href="/index.html">Home</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/Pages/AboutPage.html">About Us</a>
+          <li class="nav-item dropdown">
+            <a
+              class="nav-link dropdown-toggle"
+              href="#"
+              role="button"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >
+              About
+            </a>
+            <ul class="dropdown-menu">
+              <li>
+                <a class="dropdown-item" href="/Pages/AboutPage.html"
+                  >About Us</a
+                >
+              </li>
+              <li>
+                <a class="dropdown-item" href="/Pages/HeadOfDepartment.html"
+                  >Head Of Department</a
+                >
+              </li>
+            </ul>
           </li>
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <a
+              class="nav-link dropdown-toggle"
+              href="#"
+              role="button"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >
               People
             </a>
             <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="../Pages/facultypage.html">Faculty</a></li>
-              <li><a class="dropdown-item" href="../Pages/StaffPage.html">Staff</a></li>
-        
+              <li>
+                <a class="dropdown-item" href="../Pages/facultypage.html"
+                  >Faculty</a
+                >
+              </li>
+              <li>
+                <a class="dropdown-item" href="../Pages/StaffPage.html"
+                  >Staff</a
+                >
+              </li>
             </ul>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="/Pages/ReserchPage.html">Research</a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/Pages/webinar-seminar.html">Webinar & Seminar</a>
+          </li>
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <a
+              class="nav-link dropdown-toggle"
+              href="#"
+              role="button"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >
               Students
             </a>
             <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="../Pages/BscStudentpage.html">BSc</a></li>
-              <li><a class="dropdown-item" href="../Pages/BCAStudentpage.html">BCA</a></li>
-              <li><a class="dropdown-item" href="../Pages/MscStudentpage.html">Msc</a></li>
-        
+              <li>
+                <a class="dropdown-item" href="../Pages/BscStudentpage.html"
+                  >BSc</a
+                >
+              </li>
+              <li>
+                <a class="dropdown-item" href="../Pages/BCAStudentpage.html"
+                  >BCA</a
+                >
+              </li>
+              <li>
+                <a class="dropdown-item" href="../Pages/MscStudentpage.html"
+                  >Msc</a
+                >
+              </li>
             </ul>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/Pages/PlacementStudentPage.html">Placements</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="/Pages/Time_TablePage.html">Time Table</a>
@@ -88,158 +144,12 @@
         </ul>
       </div>
     </nav>
+
     <!-- faculty data -->
     <div class="container my-4">
       <h1 class="text-center mb-4 audio-font">Student</h1>
       <!-- 2024 -->
-      <!-- <div id="students" class="row justify-content-center mt-1">
-        <div class="album py-5 bg-body-tertiary">
-          <div class="container">
-            <h1>2024</h1>
-            <h2>BCA 1st Year</h2>
-            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-              <div class="col">
-                <div class="card shadow-sm">
-                  <svg
-                    class="bd-placeholder-img card-img-top"
-                    width="100%"
-                    height="225"
-                    xmlns="http://www.w3.org/2000/svg"
-                    role="img"
-                    aria-label="Placeholder: Thumbnail"
-                    preserveAspectRatio="xMidYMid slice"
-                    focusable="false"
-                  >
-                    <title>Placeholder</title>
-                    <rect width="100%" height="100%" fill="#55595c"></rect>
-                    <text x="50%" y="50%" fill="#eceeef" dy=".3em">
-                      Thumbnail
-                    </text>
-                  </svg>
-                  <div class="card-body">
-                    <p class="card-text">
-                      This is a wider card with supporting text below as a
-                      natural lead-in to additional content. This content is a
-                      little bit longer.
-                    </p>
-                    <div
-                      class="d-flex justify-content-between align-items-center"
-                    >
-                      <div class="btn-group">
-                        <button
-                          type="button"
-                          class="btn btn-sm btn-outline-secondary"
-                        >
-                          View
-                        </button>
-                        <button
-                          type="button"
-                          class="btn btn-sm btn-outline-secondary"
-                        >
-                          Edit
-                        </button>
-                      </div>
-                      <small class="text-body-secondary">9 mins</small>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="col">
-                <div class="card shadow-sm">
-                  <svg
-                    class="bd-placeholder-img card-img-top"
-                    width="100%"
-                    height="225"
-                    xmlns="http://www.w3.org/2000/svg"
-                    role="img"
-                    aria-label="Placeholder: Thumbnail"
-                    preserveAspectRatio="xMidYMid slice"
-                    focusable="false"
-                  >
-                    <title>Placeholder</title>
-                    <rect width="100%" height="100%" fill="#55595c"></rect>
-                    <text x="50%" y="50%" fill="#eceeef" dy=".3em">
-                      Thumbnail
-                    </text>
-                  </svg>
-                  <div class="card-body">
-                    <p class="card-text">
-                      This is a wider card with supporting text below as a
-                      natural lead-in to additional content. This content is a
-                      little bit longer.
-                    </p>
-                    <div
-                      class="d-flex justify-content-between align-items-center"
-                    >
-                      <div class="btn-group">
-                        <button
-                          type="button"
-                          class="btn btn-sm btn-outline-secondary"
-                        >
-                          View
-                        </button>
-                        <button
-                          type="button"
-                          class="btn btn-sm btn-outline-secondary"
-                        >
-                          Edit
-                        </button>
-                      </div>
-                      <small class="text-body-secondary">9 mins</small>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="col">
-                <div class="card shadow-sm">
-                  <svg
-                    class="bd-placeholder-img card-img-top"
-                    width="100%"
-                    height="225"
-                    xmlns="http://www.w3.org/2000/svg"
-                    role="img"
-                    aria-label="Placeholder: Thumbnail"
-                    preserveAspectRatio="xMidYMid slice"
-                    focusable="false"
-                  >
-                    <title>Placeholder</title>
-                    <rect width="100%" height="100%" fill="#55595c"></rect>
-                    <text x="50%" y="50%" fill="#eceeef" dy=".3em">
-                      Thumbnail
-                    </text>
-                  </svg>
-                  <div class="card-body">
-                    <p class="card-text">
-                      This is a wider card with supporting text below as a
-                      natural lead-in to additional content. This content is a
-                      little bit longer.
-                    </p>
-                    <div
-                      class="d-flex justify-content-between align-items-center"
-                    >
-                      <div class="btn-group">
-                        <button
-                          type="button"
-                          class="btn btn-sm btn-outline-secondary"
-                        >
-                          View
-                        </button>
-                        <button
-                          type="button"
-                          class="btn btn-sm btn-outline-secondary"
-                        >
-                          Edit
-                        </button>
-                      </div>
-                      <small class="text-body-secondary">9 mins</small>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div> -->
+      
     </div>
 
     <!-- footer -->
@@ -250,19 +160,26 @@
             <h5>Contact Us</h5>
             <ul class="list-unstyled">
               <li>
-                <i class="fas fa-map-marker-alt"></i> 123, College Address, City
+                <i class="fas fa-map-marker-alt"></i>&nbsp; A. B. Road
+                Bhawarkuwan Indore, MP, India
               </li>
-              <li><i class="fas fa-phone"></i> +91 98765 43210</li>
-              <li><i class="fas fa-envelope"></i> email@college.edu</li>
+              <li><i class="fas fa-phone"></i> &nbsp;+91-731-2970017</li>
+              <li><i class="fas fa-envelope"></i>&nbsp; gnspsc@gmail.com</li>
             </ul>
           </div>
           <div class="col-md-4">
             <h5>Quick Links</h5>
             <ul class="list-unstyled">
-              <li><a href="#" class="nav-link">Admissions</a></li>
-              <li><a href="#" class="nav-link">Research</a></li>
-              <li><a href="#" class="nav-link">Faculty</a></li>
-              <li><a href="#" class="nav-link">Contact</a></li>
+              <li>
+                <a href="/Pages/AboutPage.html" class="nav-link">About</a>
+              </li>
+              <li>
+                <a href="/Pages/ReserchPage.html" class="nav-link">Research</a>
+              </li>
+              <li>
+                <a href="/Pages/facultypage.html" class="nav-link">Faculty</a>
+              </li>
+              <li><a href="/index.html" class="nav-link">Home</a></li>
             </ul>
           </div>
           <div class="col-md-4 text-center social-boxes">

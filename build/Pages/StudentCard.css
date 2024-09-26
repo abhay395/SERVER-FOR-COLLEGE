@@ -49,24 +49,28 @@ body {
   }
 
   .card {
-    border: none;
-    border-radius: 15px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     overflow: hidden;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    transition: all 0.3s ease;
-  }
+    width: 100%;
+    max-width: 320px;
+}
 
-  .card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
-  }
+.card-image {
+    position: relative;
+    width: 100%;
+    padding-top: 100%; /* 1:1 Aspect Ratio */
+}
 
-  .card img {
-    height: 250px;
+.card-image img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
     object-fit: cover;
-    border-bottom: 5px solid #007bff;
-  }
-
+}
   .card-body {
     background-color: white;
     padding: 20px;

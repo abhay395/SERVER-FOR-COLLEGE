@@ -3,14 +3,12 @@ const container = document.getElementById("ak");
 const loader = document.createElement("div");
 loader.className = "loader"; // Assuming you have some CSS for this loader
 loader.innerHTML = `<!-- Skeleton Loader for Student Sections -->
-<div class="skeleton-student-section">
-  <div class="skeleton-title"></div>
-  <div class="skeleton-student-list">
-    <div class="skeleton-student-card"></div>
-    <div class="skeleton-student-card"></div>
-    <div class="skeleton-student-card"></div>
-  </div>
-</div>
+ <div id="loader" class="d-flex justify-content-center align-items-center" style="height: 50vh;">
+        <div class="spinner-border text-primary" role="status">
+          <span class="visually-hidden">Loading...</span>
+        </div>
+      </div>
+
 `;
 
 // Show loader
@@ -21,14 +19,13 @@ const hideLoader = () => container.removeChild(loader);
 const getData = async () => {
   try {
     showLoader(); // Show loader while fetching data
-    const response = await fetch("/student/getAll?course=Msc.cs&examYear=2023");
+    const response = await fetch("/student/getAll?course=MSc CS&examYear=2023");
     const data = await response.json();
     return data;
   } catch (error) {
     console.error(error);
     // Display error message to the user
-    StudentSection.innerHTML =
-      "<p>Failed to load student data. Please try again later.</p>";
+    StudentSection.innerHTML = "<p>Failed to load student data. Please try again later.</p>";
   } finally {
     hideLoader(); // Hide loader once data is fetched
   }
@@ -47,15 +44,13 @@ const setStudentUI = async () => {
           <span>Master of Science in Computer Science</span>
           <span>${item.examYear}</span>
         </div>
-        ${createYearSection("Student1stYear", "1st year")}
-        ${createYearSection("Student2ndYear", "2nd year")}
+        ${createYearSection('Student1stYear', '1st year')}
+        ${createYearSection('Student2ndYear', '2nd year')}
       `;
       container.appendChild(studentWithYear);
 
-      const student1stYearSection =
-        studentWithYear.querySelector("#Student1stYear");
-      const student2ndYearSection =
-        studentWithYear.querySelector("#Student2ndYear");
+      const student1stYearSection = studentWithYear.querySelector("#Student1stYear");
+      const student2ndYearSection = studentWithYear.querySelector("#Student2ndYear");
 
       populateStudents(item["1stYearStudents"], student1stYearSection);
       populateStudents(item["2ndYearStudents"], student2ndYearSection);
@@ -80,9 +75,7 @@ const populateStudents = (students, section) => {
     studentDiv.innerHTML = `
       <div class="card mb-4">
         <div class="card-image">
-          <img class="img-fluid" src="${
-            student.image
-          }?height=400&width=400" alt="${student.name}">
+          <img class="img-fluid" src="${student.image}?height=400&width=400" alt="${student.name}">
           ${student.isTopper ? `<span class="topper-badge">Topper</span>` : ""}
         </div>
         <div class="card-content p-3">
@@ -106,3 +99,35 @@ const populateStudents = (students, section) => {
 
 // Initialize the UI
 setStudentUI();
+
+document.addEventListener("DOMContentLoaded", async () => {
+  const navbarUl = document.querySelector("#navbarNav ul");
+  const login = document.querySelector("#login");
+  const adminPanelItem = createNavItem("Admin Panel", "/Pages/AdminPanel.html");
+  const loginItem = createNavItem("Login", "/Pages/Login.html");
+
+  try {
+    const response = await fetch("/check/myUser");
+    const data = await response.json();
+    navbarUl.appendChild(adminPanelItem);
+
+    console.log(data);
+  } catch (error) {
+    navbarUl.appendChild(loginItem);
+    console.error("Authentication check failed:", error);
+  }
+});
+
+// Helper function to create nav item
+function createNavItem(text, href) {
+  const li = document.createElement("li");
+  li.className = "nav-item";
+
+  const a = document.createElement("a");
+  a.className = "nav-link";
+  a.href = href;
+  a.textContent = text;
+
+  li.appendChild(a);
+  return li;
+}
