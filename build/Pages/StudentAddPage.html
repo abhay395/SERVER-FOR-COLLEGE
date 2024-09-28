@@ -163,14 +163,13 @@
                 </div>
                 <div class="mb-3">
                   <label for="year" class="form-label">Year</label>
-                  <input
-                    type="number"
-                    class="form-control"
-                    id="year"
-                    name="year"
-                    placeholder="Enter year like 1st , 2nd , 3rd, 4th"
-                    required
-                  />
+                  <select class="form-control" id="year" name="year" required>
+                    <option value="" disabled selected>Select Year</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                  </select>
                 </div>
                 <div class="mb-3">
                   <label for="rank" class="form-label">Rank</label>

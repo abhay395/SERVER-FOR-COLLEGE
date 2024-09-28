@@ -35,6 +35,11 @@ form.addEventListener("submit", (e) => {
     .then((res) => res.json())
     .then((response) => {
       // Handle the response
+      alert("Time Table Added ")
+      selectForCourse.value='';
+      selectForSession.value='';
+      selectTimeTableFor.value='';
+      pdfInput.value=''
       console.log(response);
     })
     .catch((error) => {
