@@ -30,7 +30,7 @@ async function renderHODData(){
                       <h5 class="card-title">${item.name}</h5>
                       <span class="badge bg-primary mb-2">${item.post}</span>
                       <p class="card-text">
-                      ${item.discription}
+                      ${item.description}
                       </p>
                       <ul class="list-unstyled">
                         <li>

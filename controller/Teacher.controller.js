@@ -27,7 +27,7 @@ exports.addTeacher = async (req, res) => {
     const { name, qualification, email, post, description, phone } = req.body;
     console.log(req.body);
 
-    if (!name || !qualification || !email || !post) {
+    if (!name || !qualification || !email || !post|| !description) {
       return res.status(400).json({ error: "Missing required fields" });
     }
 
