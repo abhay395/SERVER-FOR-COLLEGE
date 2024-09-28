@@ -10,9 +10,13 @@ const timeTableSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  pdfLink: {
+  timeTable: {
     type: String,
-    required: true,
+    default:"Comming Soon",
+  },
+  cce:{
+    type:String,
+    default:"Comming Soon"
   },
   createdAt: {
     type: Date,

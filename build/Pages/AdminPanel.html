@@ -22,91 +22,94 @@
       referrerpolicy="no-referrer"
     />
     <link rel="stylesheet" href="/indexStyle.css" />
-    
-    <style>
-        body {
-            font-family: 'Poppins', sans-serif;
-        }
 
+    <style>
+      body {
+        font-family: "Poppins", sans-serif;
+      }
+
+      .container-cards {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 50px 0;
+      }
+
+      .card-custom {
+        background-color: #ffffff;
+        border-radius: 15px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        overflow: hidden;
+        width: 350px;
+        height: 450px;
+        cursor: pointer;
+        transition: transform 0.4s ease, box-shadow 0.4s ease;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        margin: 15px;
+      }
+
+      .card-custom:hover {
+        transform: scale(1.05);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+      }
+
+      .card-header-custom {
+        width: 100%;
+        height: 200px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 15px 15px 0 0;
+        color: #ffffff;
+        font-size: 32px;
+        font-weight: bold;
+      }
+
+      .student-header {
+        background: linear-gradient(135deg, #6dd5fa, #3498db);
+      }
+
+      .teacher-header {
+        background: linear-gradient(135deg, #66bb6a, #2ecc71);
+      }
+
+      .card-body-custom {
+        padding: 20px;
+        font-size: 18px;
+        color: #333;
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+
+      .card-body-custom p {
+        margin: 0;
+      }
+
+      /* Responsive Design */
+      @media (max-width: 768px) {
         .container-cards {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 50px 0;
+          flex-direction: column;
         }
 
         .card-custom {
-            background-color: #ffffff;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-            overflow: hidden;
-            width: 350px;
-            height: 450px;
-            cursor: pointer;
-            transition: transform 0.4s ease, box-shadow 0.4s ease;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            margin: 15px;
+          width: 90%;
         }
-
-        .card-custom:hover {
-            transform: scale(1.05);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-        }
-
-        .card-header-custom {
-            width: 100%;
-            height: 200px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            border-radius: 15px 15px 0 0;
-            color: #ffffff;
-            font-size: 32px;
-            font-weight: bold;
-        }
-
-        .student-header {
-            background: linear-gradient(135deg, #6DD5FA, #3498db);
-        }
-
-        .teacher-header {
-            background: linear-gradient(135deg, #66bb6a, #2ecc71);
-        }
-
-        .card-body-custom {
-            padding: 20px;
-            font-size: 18px;
-            color: #333;
-            flex-grow: 1;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
-
-        .card-body-custom p {
-            margin: 0;
-        }
-
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .container-cards {
-                flex-direction: column;
-            }
-
-            .card-custom {
-                width: 90%;
-            }
-        }
+      }
     </style>
   </head>
   <body>
     <nav class="navbar navbar-expand-lg navbar-light sticky-top">
       <a class="navbar-brand" href="/index.html">
-        <img src="https://res.cloudinary.com/dhcszkydc/image/upload/v1727056797/gnspsc_logo_dcadn4.png" alt="GNSPSC Logo" />
+        <img
+          src="https://res.cloudinary.com/dhcszkydc/image/upload/v1727056797/gnspsc_logo_dcadn4.png"
+          alt="GNSPSC Logo"
+        />
       </a>
       <button
         class="navbar-toggler"
@@ -128,25 +131,56 @@
             <a class="nav-link" href="/Pages/AboutPage.html">About Us</a>
           </li>
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle"  role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <a
+              class="nav-link dropdown-toggle"
+              role="button"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >
               People
             </a>
             <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="../Pages/facultypage.html">Faculty</a></li>
-              <li><a class="dropdown-item" href="../Pages/StaffPage.html">Staff</a></li>
+              <li>
+                <a class="dropdown-item" href="../Pages/facultypage.html"
+                  >Faculty</a
+                >
+              </li>
+              <li>
+                <a class="dropdown-item" href="../Pages/StaffPage.html"
+                  >Staff</a
+                >
+              </li>
             </ul>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="/Pages/ReserchPage.html">Research</a>
           </li>
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <a
+              class="nav-link dropdown-toggle"
+              href="#"
+              role="button"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >
               Students
             </a>
             <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="../Pages/BscStudentpage.html">BSc</a></li>
-              <li><a class="dropdown-item" href="../Pages/BCAStudentpage.html">BCA</a></li>
-              <li><a class="dropdown-item" href="../Pages/MscStudentpage.html">Msc</a></li>
+              <li>
+                <a class="dropdown-item" href="../Pages/BscStudentpage.html"
+                  >BSc</a
+                >
+              </li>
+              <li>
+                <a class="dropdown-item" href="../Pages/BCAStudentpage.html"
+                  >BCA</a
+                >
+              </li>
+              <li>
+                <a class="dropdown-item" href="../Pages/MscStudentpage.html"
+                  >Msc</a
+                >
+              </li>
             </ul>
           </li>
           <li class="nav-item">
@@ -158,32 +192,101 @@
 
     <!-- Card Section -->
     <div class="container container-cards">
-        <!-- Student Section Card -->
-        <a class="card-custom" style="text-decoration: none;" href="../Pages/StudentAddPage.html" onclick="navigateToAdmin('/student')">
-            <div class="card-header-custom student-header">
-                Student Section
-            </div>
-            <div class="card-body-custom">
-                <p>Manage students, add new students, edit or delete existing student details.</p>
-            </div>
-        </a>
+      <!-- Student Section Card -->
+      <a
+        class="card-custom"
+        style="text-decoration: none"
+        href="../Pages/StudentAddPage.html"
+        onclick="navigateToAdmin('/student')"
+      >
+        <div class="card-header-custom student-header">Student Section</div>
+        <div class="card-body-custom">
+          <p>
+            Manage students, add new students, edit or delete existing student
+            details.
+          </p>
+        </div>
+      </a>
 
-        <!-- Teacher Section Card -->
-        <a class="card-custom" style="text-decoration: none;" href="../Pages/TeacherAddPage.html" onclick="navigateToAdmin('teacher')">
-            <div class="card-header-custom teacher-header">
-                Teacher Section
-            </div>
-            <div class="card-body-custom">
-                <p>Manage teachers, add new teachers, edit or delete existing teacher details.</p>
-            </div>
-        </a>
+      <!-- Teacher Section Card -->
+      <a
+        class="card-custom"
+        style="text-decoration: none"
+        href="../Pages/TeacherAddPage.html"
+        onclick="navigateToAdmin('teacher')"
+      >
+        <div class="card-header-custom teacher-header">Teacher Section</div>
+        <div class="card-body-custom">
+          <p>
+            Manage teachers, add new teachers, edit or delete existing teacher
+            details.
+          </p>
+        </div>
+      </a>
+      <a
+        class="card-custom"
+        style="text-decoration: none"
+        href="../Pages/TimeTableAdd.html"
+        onclick="navigateToAdmin('teacher')"
+      >
+        <div class="card-header-custom teacher-header">Time Table</div>
+        <div class="card-body-custom">
+          <p>
+            Manage time tables, add new time tables, edit or delete existing
+            time tables.
+          </p>
+        </div>
+      </a>
+      <a
+        class="card-custom"
+        style="text-decoration: none"
+        href="../Pages/CertificateAdd.html"
+        onclick="navigateToAdmin('teacher')"
+      >
+        <div class="card-header-custom teacher-header">Certificate</div>
+        <div class="card-body-custom">
+          <p>
+            Manage certificates, add new certificates, edit or delete existing
+            certificates.
+          </p>
+        </div>
+      </a>
+      <a
+        class="card-custom"
+        style="text-decoration: none"
+        href="../Pages/ResearchAdd.html"
+        onclick="navigateToAdmin('teacher')"
+      >
+        <div class="card-header-custom teacher-header">Research</div>
+        <div class="card-body-custom">
+          <p>
+            Manage research projects, add new projects, edit or delete existing
+            projects.
+          </p>
+        </div>
+      </a>
+      <a
+        class="card-custom"
+        style="text-decoration: none"
+        href="../Pages/NewsEventAdd.html"
+        onclick="navigateToAdmin('teacher')"
+      >
+        <div class="card-header-custom teacher-header">
+          News,Event and Requritment
+        </div>
+        <div class="card-body-custom">
+          <p>
+            Manage news, events, and recruitment, add new announcements, edit or delete existing ones.
+          </p>
+        </div>
+      </a>
     </div>
 
     <footer class="footer mt-5">
       <div class="container">
         <div class="row">
           <div class="col-md-4">
-            <h5>Contact Us</h5>
+            <h5>email Us</h5>
             <ul class="list-unstyled">
               <li>
                 <i class="fas fa-map-marker-alt"></i> 123, College Address, City
@@ -198,7 +301,7 @@
               <li><a href="#" class="nav-link">Admissions</a></li>
               <li><a href="#" class="nav-link">Research</a></li>
               <li><a href="#" class="nav-link">Faculty</a></li>
-              <li><a href="#" class="nav-link">Contact</a></li>
+              <li><a href="#" class="nav-link">email</a></li>
             </ul>
           </div>
           <div class="col-md-4 text-center social-boxes">

@@ -6,6 +6,7 @@ const {
   updateTimeTable,
   deleteTimeTable,
 } = require('../controller/TimeTable.controller.js'); // Import controller functions
+const {upload} = require('../middlewares/multer.muddewaresforPdf.js');
 
 const router = express.Router();
 
@@ -16,7 +17,7 @@ router.get('/', getAllTimeTables);
 router.get('/:id', getTimeTableById);
 
 // Route to create a new timetable entry
-router.post('/', createTimeTable);
+router.post('/',upload.single("pdf"),createTimeTable);
 
 // Route to update a timetable by ID
 router.put('/:id', updateTimeTable);

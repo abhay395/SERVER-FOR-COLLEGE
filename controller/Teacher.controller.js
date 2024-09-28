@@ -4,8 +4,17 @@ const fs = require("fs");
 // GET: Fetch all teachers
 exports.getTeachers = async (req, res) => {
   try {
-    const teachers = await Teacher.find();
-    res.json(teachers);
+    const queryObject = {};
+    if(req.query.post){
+      queryObject.post = req.query.post;
+    }
+    let teachers = Teacher.find(queryObject);
+    if(req.query.limit){
+      teachers.limit(req.query.limit).sort({timestamp: -1});
+    }
+    const result =  await teachers;
+
+    res.json(result);
   } catch (error) {
     res.status(500).json({ message: "Error fetching teachers" });
   }
@@ -15,49 +24,55 @@ exports.getTeachers = async (req, res) => {
 // POST: Add new teacher
 exports.addTeacher = async (req, res) => {
   try {
-    const { name, qualification, contact,post } = req.body;
+    const { name, qualification, email, post, description, phone } = req.body;
     console.log(req.body);
-    if (!req.file || !req.file.path) {
+
+    if (!name || !qualification || !email || !post) {
+      return res.status(400).json({ error: "Missing required fields" });
+    }
+
+    if (!req.file?.path) {
       return res.status(400).json({ error: "No file uploaded" });
     }
 
     const result = await uploadOncloudinary(req.file.path, "image");
 
-    if (!result || !result.secure_url) {
-      console.log(imagePath);
+    if (!result?.secure_url) {
       return res.status(500).json({ error: "Error uploading image" });
     }
-    const teacher = new Teacher({
+
+    const teacherData = {
       name,
       qualification,
-      contact,
+      email,
       image: result.secure_url,
-      post
-    });
+      post,
+      description
+    };
+
+    if (phone) {
+      teacherData.phone = phone;
+    }
+
+    const teacher = new Teacher(teacherData);
 
     await teacher.save();
     res.status(201).json({ message: "Teacher added successfully" });
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: "Internal Server Error" });
-  } finally {
-    if (req.file && req.file.path) {
-      fs.unlink(req.file.path, (err) => {
-        if (err) console.error("Error deleting file:", err);
-      });
-    }
   }
 };
 
 // PUT: Update teacher details
 exports.updateTeacher = async (req, res) => {
   const { id } = req.params;
-  const { name, qualification, image, contact, subject } = req.body;
+  const { name, qualification, image, email, subject } = req.body;
 
   try {
     const updatedTeacher = await Teacher.findByIdAndUpdate(
       id,
-      { name, qualification, image, contact, subject },
+      { name, qualification, image, email, subject },
       { new: true }
     );
     res

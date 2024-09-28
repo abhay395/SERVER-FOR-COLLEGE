@@ -1,12 +1,18 @@
-const TimeTable = require('../models/TimeTable.js'); // Assuming the schema is in models folder
-
+const TimeTable = require("../models/TimeTable.js"); // Assuming the schema is in models folder
+const { uploadOncloudinary } = require("../utils/cloudinary");
 // Get all timetable entries
 const getAllTimeTables = async (req, res) => {
   try {
-    const timeTables = await TimeTable.find();
+    const queryObject = {}
+
+    // const { session } = req.query.session;
+    if (req.query.session) {
+      queryObject.courseSession = req.query.session
+    }
+    const timeTables = await TimeTable.find(queryObject);
     res.status(200).json(timeTables);
   } catch (error) {
-    res.status(500).json({ message: 'Error fetching timetables', error });
+    res.status(500).json({ message: "Error fetching timetables", error });
   }
 };
 
@@ -15,50 +21,68 @@ const getTimeTableById = async (req, res) => {
   try {
     const timeTable = await TimeTable.findById(req.params.id);
     if (!timeTable) {
-      return res.status(404).json({ message: 'Time table not found' });
+      return res.status(404).json({ message: "Time table not found" });
     }
     res.status(200).json(timeTable);
   } catch (error) {
-    res.status(500).json({ message: 'Error fetching timetable', error });
-  }
-};
-
-// Create a new timetable
-const createTimeTable = async (req, res) => {
-  const { courseName, pdfLink } = req.body;
-  
-  if (!courseName || !pdfLink) {
-    return res.status(400).json({ message: 'Course name and PDF link are required' });
-  }
-
-  try {
-    const newTimeTable = new TimeTable({
-      courseName,
-      pdfLink,
-    });
-    await newTimeTable.save();
-    res.status(201).json(newTimeTable);
-  } catch (error) {
-    res.status(500).json({ message: 'Error creating timetable', error });
+    res.status(500).json({ message: "Error fetching timetable", error });
   }
 };
 
 // Update a timetable entry
 const updateTimeTable = async (req, res) => {
   try {
-    const timeTable = await TimeTable.findByIdAndUpdate(
-      req.params.id,
-      { $set: req.body },
-      { new: true }
-    );
-    
-    if (!timeTable) {
-      return res.status(404).json({ message: 'Time table not found' });
+    const { courseName, courseSession, type } = req.body;
+    let timeTable = await TimeTable.findOne({ courseName, courseSession });
+    if (timeTable && timeTable[type] === "Comming Soon") {
+      const result = await uploadOncloudinary(req.file.path, "raw");
+      if (!result || !result.secure_url) {
+        return res.status(500).json({ error: "Error uploading pdf" });
+      }
+      const id = timeTable._id._id;
+      console.log(id);
+      const updatedTimeTable = await TimeTable.findByIdAndUpdate(
+        id,
+        { $set: { [type]: result.secure_url } },
+        { new: true }
+      );
+      // // console.log(tl);
+      return updatedTimeTable;
+    } else {
+      return null;
     }
-
-    res.status(200).json(timeTable);
   } catch (error) {
-    res.status(500).json({ message: 'Error updating timetable', error });
+    return null;
+  }
+};
+
+// Create a new timetable
+const createTimeTable = async (req, res) => {
+  const { courseName, courseSession, type } = req.body;
+
+  try {
+    const updatedTimeTable = await updateTimeTable(req, res);
+    if (updatedTimeTable) {
+      res.status(200).json(updatedTimeTable);
+    } else {
+      console.log(req.file.path);
+      const result = await uploadOncloudinary(req.file.path, "raw");
+      if (!result || !result.secure_url) {
+        return res.status(500).json({ error: "Error uploading pdf" });
+      }
+
+      const newTimeTable = new TimeTable({
+        courseName,
+        courseSession,
+        [type]: result.secure_url,
+      });
+
+      const savedTimeTable = await newTimeTable.save();
+      res.status(200).json(savedTimeTable);
+    }
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ message: "Error creating timetable", error });
   }
 };
 
@@ -66,14 +90,14 @@ const updateTimeTable = async (req, res) => {
 const deleteTimeTable = async (req, res) => {
   try {
     const timeTable = await TimeTable.findByIdAndDelete(req.params.id);
-    
+
     if (!timeTable) {
-      return res.status(404).json({ message: 'Time table not found' });
+      return res.status(404).json({ message: "Time table not found" });
     }
 
-    res.status(200).json({ message: 'Time table deleted successfully' });
+    res.status(200).json({ message: "Time table deleted successfully" });
   } catch (error) {
-    res.status(500).json({ message: 'Error deleting timetable', error });
+    res.status(500).json({ message: "Error deleting timetable", error });
   }
 };
 

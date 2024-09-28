@@ -10,7 +10,7 @@ const DepartmentHead = require('../models/DepartmentHead'); // Mongoose model
 }
 
 exports.updateDeparmentHeadInfor =async (req, res) => {
-    const { name, designation, contact, photo } = req.body;
+    const { name, designation, email, photo } = req.body;
   
     try {
       let head = await DepartmentHead.findOne();
@@ -18,11 +18,11 @@ exports.updateDeparmentHeadInfor =async (req, res) => {
         // Update existing head
         head.name = name;
         head.designation = designation;
-        head.contact = contact;
+        head.email = email;
         head.photo = photo;
       } else {
         // Create new head
-        head = new DepartmentHead({ name, designation, contact, photo });
+        head = new DepartmentHead({ name, designation, email, photo });
       }
   
       await head.save();

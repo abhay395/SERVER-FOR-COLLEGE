@@ -13,6 +13,9 @@ const {
   teacherRouter,
   timeTableRouter,
   uploadRouter,checkRouter
+  ,headlineRouter
+  ,researchRouter
+  ,certificationRouter
 } = require("./service/AllRoutes");
 const path = require("path");
 const {connectDb} = require("./db/connectdb");
@@ -138,9 +141,12 @@ app.use("/slider", sliderRouter.router);
 app.use("/student", studentRouter.router);
 app.use("/teacher", teacherRouter.router);
 app.use("/timeTable", timeTableRouter.router);
+app.use("/headline", headlineRouter.router);
 app.use("/upload", uploadRouter.router);
-
+app.use("/research", researchRouter.router);
+app.use("/certification", certificationRouter.router);
 app.use("/check", isAuth(), checkRouter.router);
+
 
 const PORT = process.env.PORT;
 app.listen(PORT, () => {

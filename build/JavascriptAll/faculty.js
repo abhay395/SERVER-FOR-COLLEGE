@@ -34,7 +34,7 @@ function createFacultyCard(faculty) {
       <div class="card-body d-flex flex-column">
         <h5 class="card-title text-center mb-3">${faculty.name}</h5>
         <p class="card-text"><strong>Qualification:</strong> ${faculty.qualification}</p>
-        <p class="card-text"><strong>Contact:</strong> ${faculty.contact}</p>
+        <p class="card-text"><strong>email:</strong> ${faculty.email}</p>
       </div>
     </div>`;
   
@@ -56,7 +56,7 @@ function renderFacultyData(facultyList) {
 
 // Fetch faculty data and handle the response
 function fetchFacultyData() {
-  fetch("/teacher")
+  fetch("/teacher?post=Faculty")
     .then((response) => response.json())
     .then((data) => {
       hideLoader();
@@ -72,34 +72,3 @@ function fetchFacultyData() {
 // Initialize the fetching of faculty data
 fetchFacultyData();
 
-document.addEventListener("DOMContentLoaded", async () => {
-  const navbarUl = document.querySelector("#navbarNav ul");
-  const login = document.querySelector("#login");
-  const adminPanelItem = createNavItem("Admin Panel", "/Pages/AdminPanel.html");
-  const loginItem = createNavItem("Login", "/Pages/Login.html");
-
-  try {
-    const response = await fetch("/check/myUser");
-    const data = await response.json();
-    navbarUl.appendChild(adminPanelItem);
-
-    console.log(data);
-  } catch (error) {
-    navbarUl.appendChild(loginItem);
-    console.error("Authentication check failed:", error);
-  }
-});
-
-// Helper function to create nav item
-function createNavItem(text, href) {
-  const li = document.createElement("li");
-  li.className = "nav-item";
-
-  const a = document.createElement("a");
-  a.className = "nav-link";
-  a.href = href;
-  a.textContent = text;
-
-  li.appendChild(a);
-  return li;
-}
