@@ -18,9 +18,9 @@ const renderData = async () => {
     data = data[0];
     const { OngoingResearch, Publications, ResearchGroups } = data;
     rsContainer.innerHTML = `
-  ${generateCards(OngoingResearch[0].type, OngoingResearch, true)}
-  ${generateCards(Publications[0].type, Publications)}
-  ${generateCards(ResearchGroups[0].type,ResearchGroups)}
+  ${generateCards(OngoingResearch[0]?.type, OngoingResearch, true)}
+  ${generateCards("Publications", Publications)}
+  ${generateCards("Research Groups",ResearchGroups)}
 `;
   } catch (error) {
     console.log(error);
