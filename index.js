@@ -96,7 +96,6 @@ passport.use(
           }
         );
       } catch (error) {
-        // // console.log(error);
         return done(null, { message: "unautherized" });
       }
     }
@@ -111,8 +110,6 @@ passport.use(
     try {
       const { _id } = jwt_payload;
       console.log(jwt_payload);
-      // // console.log("jwt payload",jwt_payload)
-      // // console.log("user",data)
       if (_id) {
         return done(null, _id);
       } else {
@@ -133,7 +130,7 @@ passport.deserializeUser(function (user, done) {
   done(null, user);
 });
 
-app.get("*", (req, res) => res.sendFile(path.resolve("build")));
+// app.get("*", (req, res) => res.sendFile(path.resolve("build")));
 app.use("/auth", authRouter.router);
 app.use("/user", isAuth(), userRouter.router);
 app.use("/department-head", departmentHeadRouter.router);
