@@ -16,9 +16,9 @@ const {
   ,headlineRouter
   ,researchRouter
   ,certificationRouter
-} = require("./service/AllRoutes");
+} = require("../service/AllRoutes");
 const path = require("path");
-const {connectDb} = require("./db/connectdb");
+const {connectDb} = require("../db/connectdb");
 
 //passport js
 const jwt = require("jsonwebtoken");
@@ -31,9 +31,9 @@ const JwtStrategy = require("passport-jwt").Strategy;
 const cors = require("cors");
 
 // CookieExtractor For Extracte cookies from request
-const { cookieExtractor, isAuth } = require("./service/com");
+const { cookieExtractor, isAuth } = require("../service/com");
 const cookieParser = require("cookie-parser");
-const User = require("./models/User.model");
+const User = require("../models/User.model");
 
 // TODO: cors setup
 app.use(express.static("build"));
