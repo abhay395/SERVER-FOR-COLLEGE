@@ -8,14 +8,13 @@ const uploadOncloudinary = async (localFilePath, fileType) => {
   try {
     const stream = cloudinary.uploader.upload_stream((error, result) => {
       if (error) {
-        return res.status(500).send("Upload failed.");
+        return null;
       }
-      res.status(200).send(result);
+      return result
     });
 
     streamifier.createReadStream(req.file.buffer).pipe(stream);
     // fs.unlinkSync(localFilePath);
-    return result;
   } catch (error) {
     // fs.unlinkSync(localFilePath);
     return null;
