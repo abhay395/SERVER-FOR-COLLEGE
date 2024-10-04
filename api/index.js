@@ -3,6 +3,7 @@ require("dotenv").config();
 const app = express();
 const crypto = require("crypto");
 const MongoStore = require('connect-mongo');
+const serverless = require('serverless-http')
 //All Routers
 const {
   departmentHeadRouter,
