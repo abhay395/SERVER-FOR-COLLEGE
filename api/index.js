@@ -133,6 +133,7 @@ passport.deserializeUser(function (user, done) {
   done(null, user);
 });
 
+app.get("/", (req, res) => res.send("<h1>hello</h1>"));
 // app.get("*", (req, res) => res.sendFile(path.resolve("build")));
 app.use("/auth", authRouter.router);
 app.use("/user", isAuth(), userRouter.router);
@@ -146,7 +147,6 @@ app.use("/upload", uploadRouter.router);
 app.use("/research", researchRouter.router);
 app.use("/certification", certificationRouter.router);
 app.use("/check", isAuth(), checkRouter.router);
-app.get("/", (req, res) =>res.send("hello") );
 
 
 module.exports = app;
