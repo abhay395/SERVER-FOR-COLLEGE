@@ -2,7 +2,7 @@ const express = require("express");
 require("dotenv").config();
 const app = express();
 const crypto = require("crypto");
-
+const MongoStore = require('connect-mongo');
 //All Routers
 const {
   departmentHeadRouter,
@@ -49,6 +49,9 @@ app.use(
     secret: "shhh",
     resave: false,
     saveUninitialized: false,
+    store: MongoStore.create({
+        mongoUrl: process.env.MONGO_URI, // Add your MongoDB connection string here
+      }),
   })
 );
 
