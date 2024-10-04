@@ -50,7 +50,7 @@ app.use(
     resave: false,
     saveUninitialized: false,
     store: MongoStore.create({
-        mongoUrl: process.env.MONGO_URI, // Add your MongoDB connection string here
+        mongoUrl: process.env.MONGODB_URL, // Add your MongoDB connection string here
       }),
   })
 );
