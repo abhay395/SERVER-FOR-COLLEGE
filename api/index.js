@@ -143,6 +143,7 @@ app.use("/upload", uploadRouter.router);
 app.use("/research", researchRouter.router);
 app.use("/certification", certificationRouter.router);
 app.use("/check", isAuth(), checkRouter.router);
+app.get("/", (req, res) =>res.send("hello") );
 
 
 module.exports = app;
