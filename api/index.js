@@ -6,10 +6,8 @@ const MongoStore = require('connect-mongo');
 const serverless = require('serverless-http')
 //All Routers
 const {
-  departmentHeadRouter,
   authRouter,
   userRouter,
-  sliderRouter,
   studentRouter,
   teacherRouter,
   timeTableRouter,
@@ -17,9 +15,10 @@ const {
   ,headlineRouter
   ,researchRouter
   ,certificationRouter
-} = require("../service/AllRoutes");
+  ,placementStudentRouter
+} = require("./service/AllRoutes");
 const path = require("path");
-const {connectDb} = require("../db/connectdb");
+const {connectDb} = require("./db/connectdb");
 
 //passport js
 const jwt = require("jsonwebtoken");
@@ -32,9 +31,9 @@ const JwtStrategy = require("passport-jwt").Strategy;
 const cors = require("cors");
 
 // CookieExtractor For Extracte cookies from request
-const { cookieExtractor, isAuth } = require("../service/com");
+const { cookieExtractor, isAuth } = require("./service/com");
 const cookieParser = require("cookie-parser");
-const User = require("../models/User.model");
+const User = require("./models/User.model");
 
 // TODO: cors setup
 app.use(express.static("build"));
@@ -47,12 +46,18 @@ app.use(cookieParser());
 // TODO: session setup
 app.use(
   session({
-    secret: "shhh",
+    secret: process.env.SESSION_SECRET || 'secret', // Use a secure secret in production
     resave: false,
     saveUninitialized: false,
     store: MongoStore.create({
-        mongoUrl: process.env.MONGODB_URL, // Add your MongoDB connection string here
-      }),
+      mongoUrl: process.env.MONGODB_URL, // MongoDB connection string
+      ttl: 14 * 24 * 60 * 60, // Sessions expire after 14 days
+    }),
+    cookie: {
+      maxAge: 14 * 24 * 60 * 60 * 1000, // Cookie expiration time
+      secure: process.env.NODE_ENV === 'production', // Set this to true if using HTTPS
+      httpOnly: true,
+    },
   })
 );
 
@@ -100,6 +105,7 @@ passport.use(
           }
         );
       } catch (error) {
+        // // console.log(error);
         return done(null, { message: "unautherized" });
       }
     }
@@ -114,6 +120,8 @@ passport.use(
     try {
       const { _id } = jwt_payload;
       console.log(jwt_payload);
+      // // console.log("jwt payload",jwt_payload)
+      // // console.log("user",data)
       if (_id) {
         return done(null, _id);
       } else {
@@ -134,12 +142,9 @@ passport.deserializeUser(function (user, done) {
   done(null, user);
 });
 
-// app.get("/", (req, res) => res.send("<h1>hello</h1>"));
 app.get("*", (req, res) => res.sendFile(path.resolve("build")));
 app.use("/auth", authRouter.router);
 app.use("/user", isAuth(), userRouter.router);
-app.use("/department-head", departmentHeadRouter.router);
-app.use("/slider", sliderRouter.router);
 app.use("/student", studentRouter.router);
 app.use("/teacher", teacherRouter.router);
 app.use("/timeTable", timeTableRouter.router);
@@ -147,7 +152,9 @@ app.use("/headline", headlineRouter.router);
 app.use("/upload", uploadRouter.router);
 app.use("/research", researchRouter.router);
 app.use("/certification", certificationRouter.router);
+app.use("/placementStudent", placementStudentRouter.router);
 app.use("/check", isAuth(), checkRouter.router);
+
 
 
 module.exports = app;
